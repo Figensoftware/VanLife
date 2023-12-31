@@ -464,3 +464,15 @@ i[class*='van-type-'] {
   height: 100px;
   border-radius: 5px;
 }
+
+/* 404 */
+.not-found-container {
+  padding-inline: 26px;
+  text-align: center;
+}
+
+.not-found-container .link-button {
+  width: 40%;
+  background-color: #161616;
+  color: white;
+}

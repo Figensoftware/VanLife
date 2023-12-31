@@ -70,7 +70,14 @@ setSearchParams(prevParams => {
         <div className="van-list">
             {displayedVans.map(van => (
        <div key={van.id} className="van-tile">
-        <Link to={`/vans/${van.id}`} >
+        {/* <Link to={`/vans/${van.id}`} > değiştirildi relative path kullanıldı. */}
+        <Link 
+        to={van.id}
+        // location 
+        state={{ 
+            search: `?${searchParams.toString()}`,
+            type: typeFilter
+             }}>
        <img src={van.imageUrl} />
        <div className="van-info">
            <h3>{van.name}</h3>
