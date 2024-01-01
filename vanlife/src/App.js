@@ -1,5 +1,8 @@
 import './App.css';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { createBrowserRouter,
+         createRoutesFromElements,
+         RouterProvider,
+         Route } from "react-router-dom";
 import Home from './pages/Home';
 import About from './pages/About';
 import Vans from './pages/Vans/Vans';
@@ -19,39 +22,37 @@ import HostVanPhotos from './pages/Host/HostVanPhotos';
 import NotFound from './pages/NotFound';
 
 
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route path='/' element={<Layout/>}>
+  <Route index element={<Home/>} />
+  <Route  path='about' element={<About/>} />
+  <Route path='vans' element={<Vans/>} />
+  <Route path='vans/:id' element={<VanDetails/>} />
+
+
+  <Route path='host' element={<HostLayout/>}>
+  <Route index element={<Dashboard />} />
+  <Route path='income' element={<Income/>} />
+  <Route path='reviews' element={<Reviews/>} />
+  <Route  path='vans' element={<HostVans/>} />
+  <Route  path='vans/:id' element={<HostVanDetails/>} >
+   <Route index element={<HostVaninfo/>} />
+   <Route path='pricing' element={<HostVanPricing/>} />
+   <Route path='photos' element={<HostVanPhotos/>} />
+   </Route> 
+
+</Route>
+<Route path='*' element={<NotFound/>}/>
+</Route>
+))
+
 function App() {
   return (
-    
-     <BrowserRouter>
-     <Routes>
-      {/*hepsinde başındaki "/"" kaldırıldı relative path oldukları için  */}
-      {/* Index Routes ile  path='/' ve path="host"  yerine index kullanıldı. */}
-      <Route path='/' element={<Layout/>}>
-     <Route index element={<Home/>} />
-     <Route  path='about' element={<About/>} />
-     <Route path='vans' element={<Vans/>} />
-     <Route path='vans/:id' element={<VanDetails/>} />
-
-
-     <Route path='host' element={<HostLayout/>}>
-     <Route index element={<Dashboard />} />
-     <Route path='income' element={<Income/>} />
-     <Route path='reviews' element={<Reviews/>} />
-     <Route  path='vans' element={<HostVans/>} />
-     <Route  path='vans/:id' element={<HostVanDetails/>} >
-      <Route index element={<HostVaninfo/>} />
-      <Route path='pricing' element={<HostVanPricing/>} />
-      <Route path='photos' element={<HostVanPhotos/>} />
-      </Route> 
-
-   </Route>
-   <Route path='*' element={<NotFound/>}/>
-  </Route>
-</Routes>
-</BrowserRouter>
-         
-   
-  );
+    // {/*hepsinde başındaki "/"" kaldırıldı relative path oldukları için  */}
+    //   {/* Index Routes ile  path='/' ve path="host"  yerine index kullanıldı. */}
+  //  BrowserRouter change with Loader.
+    <RouterProvider router={router}/>
+    );
 }
 
 export default App;
